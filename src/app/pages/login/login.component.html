@@ -9,26 +9,27 @@
     </mat-card-header>
 
     <mat-card-content>
-      @if (errorMessage) {
-        <div class="alert-error" role="alert" aria-live="assertive">
-          <mat-icon>error_outline</mat-icon>
-          <span>{{ errorMessage }}</span>
-        </div>
-      }
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="alert-error" role="alert" aria-live="assertive">
+        <mat-icon>error_outline</mat-icon>
+        <span>{{ errorMessage }}</span>
+      </div>
 
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <!-- Email Field -->
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Email Address</mat-label>
           <input matInput formControlName="email" type="email" placeholder="user@company.com" autocomplete="email" aria-required="true" />
           <mat-icon matPrefix>email</mat-icon>
-          @if (loginForm.get('email')?.hasError('required')) {
-            <mat-error>Email is required</mat-error>
-          }
-          @if (loginForm.get('email')?.hasError('email')) {
-            <mat-error>Please enter a valid email address</mat-error>
-          }
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+            Please enter a valid email address
+          </mat-error>
         </mat-form-field>
 
+        <!-- Password Field -->
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Password</mat-label>
           <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" autocomplete="current-password" aria-required="true" />
@@ -36,9 +37,9 @@
           <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
             <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
           </button>
-          @if (loginForm.get('password')?.hasError('required')) {
-            <mat-error>Password is required</mat-error>
-          }
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Password is required
+          </mat-error>
         </mat-form-field>
 
         <div class="form-actions-row">
@@ -46,13 +47,15 @@
           <a routerLink="/forgot-password" class="forgot-link">Forgot password?</a>
         </div>
 
+        <!-- Submit Button -->
         <button mat-flat-button color="primary" type="submit" class="submit-button" [disabled]="loading">
-          @if (loading) {
+          <ng-container *ngIf="loading; else notLoading">
             <mat-spinner diameter="20" class="btn-spinner"></mat-spinner>
             <span>Signing in...</span>
-          } @else {
+          </ng-container>
+          <ng-template #notLoading>
             <span>Sign In</span>
-          }
+          </ng-template>
         </button>
       </form>
     </mat-card-content>

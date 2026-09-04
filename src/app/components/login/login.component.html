@@ -1,3 +1,4 @@
+/* login.component.html — Updated with Dark Slate styles for Hexa */
 <mat-card >
     <mat-card-title>Login</mat-card-title>
       <mat-card-content>
@@ -25,3 +26,24 @@
         </form>
       </mat-card-content>
 </mat-card>
+
+
+/* Custom Hexa Styling */
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-button.mat-primary,
+button.action-button,
+button.btn-primary {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+
+.mat-mdc-raised-button.mat-primary:hover,
+.mat-mdc-button.mat-primary:hover,
+button.action-button:hover,
+button.btn-primary:hover {
+  background-color: #1e293b !important;
+  transform: translateY(-1px);
+}

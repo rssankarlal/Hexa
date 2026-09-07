@@ -26,3 +26,19 @@
     display: flex;
     justify-content: flex-end;
   }
+
+  .login-btn {
+    background-color: #d32f2f !important;
+    color: #ffffff !important;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 5px -1px rgba(211, 47, 47, 0.2), 0 6px 10px 0 rgba(211, 47, 47, 0.14), 0 1px 18px 0 rgba(211, 47, 47, 0.12);
+  }
+
+  .login-btn:hover {
+    background-color: #b71c1c !important;
+  }
+
+  .login-btn mat-icon {
+    margin-right: 4px;
+  }
